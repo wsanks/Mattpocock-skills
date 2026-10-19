@@ -2,6 +2,21 @@
 
 The architectural review is rendered as a single self-contained HTML file in the OS temp directory. Tailwind and Mermaid both come from CDNs. Mermaid handles graph-shaped diagrams reliably; hand-built divs and inline SVG handle the more editorial visuals (mass diagrams, cross-sections). Mix the two — don't lean on Mermaid for everything, it'll start to look generic.
 
+## Contents
+
+- Scaffold
+- Header
+- Candidate card
+- Diagram patterns
+  - Mermaid graph (the workhorse for dependencies / call flow)
+  - Hand-built boxes-and-arrows (when Mermaid's layout fights you)
+  - Cross-section (good for layered shallowness)
+  - Mass diagram (good for "interface as wide as implementation")
+  - Call-graph collapse
+- Style guidance
+- Top recommendation section
+- Tone
+
 ## Scaffold
 
 ```html
