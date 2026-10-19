@@ -36,49 +36,21 @@ Make it executable with `chmod +x`.
 
 ### 3. Add hook to settings
 
-Add to the appropriate settings file:
+Run the bundled [scripts/merge-hook-settings.sh](scripts/merge-hook-settings.sh) with exactly these arguments. Do not edit the settings file by hand.
 
-**Project** (`.claude/settings.json`):
+**Project**:
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-dangerous-git.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
+```bash
+bash <skill-dir>/scripts/merge-hook-settings.sh .claude/settings.json '"$CLAUDE_PROJECT_DIR"/.claude/hooks/block-dangerous-git.sh'
 ```
 
-**Global** (`~/.claude/settings.json`):
+**Global**:
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-dangerous-git.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
+```bash
+bash <skill-dir>/scripts/merge-hook-settings.sh ~/.claude/settings.json '~/.claude/hooks/block-dangerous-git.sh'
 ```
 
-If the settings file already exists, merge the hook into existing `hooks.PreToolUse` array — don't overwrite other settings.
+The script creates the file if missing, keeps every existing setting and hook, refuses to touch invalid JSON, and does nothing if the hook is already registered. If it exits non-zero, show the user its message and stop.
 
 ### 4. Ask about customization
 

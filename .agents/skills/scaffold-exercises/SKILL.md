@@ -49,24 +49,11 @@ If the subfolder has code, it also needs a `main.ts` (>1 line). But for stubs, a
 4. **Run lint** - `pnpm ai-hero-cli internal lint` to validate
 5. **Fix any errors** - iterate until lint passes
 
-## Lint rules summary
-
-The linter (`pnpm ai-hero-cli internal lint`) checks:
-
-- Each exercise has subfolders (`problem/`, `solution/`, `explainer/`)
-- At least one of `problem/`, `explainer/`, or `explainer.1/` exists
-- `readme.md` exists and is non-empty in the primary subfolder
-- No `.gitkeep` files
-- No `speaker-notes.md` files
-- No broken links in readmes
-- No `pnpm run exercise` commands in readmes
-- `main.ts` required per subfolder unless it's readme-only
-
 ## Moving/renaming exercises
 
 When renumbering or moving exercises:
 
-1. Use `git mv` (not `mv`) to rename directories - preserves git history
+1. Rename directories with `git mv`
 2. Update the numeric prefix to maintain order
 3. Re-run lint after moves
 
